@@ -1,0 +1,20 @@
+{
+  "name": "rn-navigation",
+  "version": "1.0.0",
+  "description": "react-native navigation state maintained by redux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": "alichen",
+  "license": "MIT",
+  "peerDependencies": {
+    "lodash": "^4.17.2",
+    "react": "^15.4.0",
+    "react-native": "^0.37.0",
+    "react-native-vector-icons": "^3.0.0"
+  }
+}
