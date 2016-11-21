@@ -1,4 +1,4 @@
-RN-Navigation [![npm version](https://badge.fury.io/js/rn-navigation.svg)](https://badge.fury.io/js/rn-navigation)
+RN-Navigation [![CircleCI](https://circleci.com/gh/ali322/rn-navigation.svg?style=svg)](https://circleci.com/gh/ali322/rn-navigation) [![npm version](https://badge.fury.io/js/rn-navigation.svg)](https://badge.fury.io/js/rn-navigation)
 ===
 [![NPM](https://nodei.co/npm/rn-navigation.png)](https://nodei.co/npm/rn-navigation/)
 
