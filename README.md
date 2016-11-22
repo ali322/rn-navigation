@@ -8,7 +8,7 @@ Install
 ===
 
 ```javascript
-npm install rn-Navigation --save
+npm install rn-navigation --save
 ```
 
 Useage
