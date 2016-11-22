@@ -1,12 +1,11 @@
-'use strict'
-
 import React,{Component,PropTypes} from "react"
 import {BackAndroid} from "react-native"
 import TabNavigation from "./tabnavigation"
 import Navigation from "./navigation"
-import containerByComponent from "../../lib/redux-helper"
+import {bindActionCreators} from "redux"
 import routerReducer from "./reducer"
 import * as actions from "./action"
+import Immutable from "seamless-immutable"
 import _ from "lodash"
 
 class Router extends Component{
@@ -31,7 +30,7 @@ class Router extends Component{
                 return {key:child.props.name,...child.props}
             }
         })
-        return _scenes
+        return Immutable(_scenes)
     }
     componentDidMount(){
         if(this.props.navigationState.routes.length === 0){

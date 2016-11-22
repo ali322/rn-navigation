@@ -1,2 +1,4 @@
-export * from "./src/router"
-export routerReducer from "./src/reducer"
+import Router,{Scene} from "./src/router"
+import routerReducer from "./src/reducer"
+
+export {Router,Scene,routerReducer}

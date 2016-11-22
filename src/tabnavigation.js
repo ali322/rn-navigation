@@ -27,10 +27,10 @@ class TabNavigation extends Component{
                         }} 
                         title={item.title} iconName={item.iconName} iconTag={item.iconTag}>
                             <Navigation navigationState={item} navigationActions={navigationActions} sceneProps={sceneProps}/>
-                        </TabBar.Item>
+                        </TabBarComponent.Item>
                     )
                 })}
-            </TabBar>
+            </TabBarComponent>
         )
     }
 }

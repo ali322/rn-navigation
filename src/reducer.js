@@ -2,6 +2,7 @@
 
 import {NavigationExperimental} from "react-native"
 import * as constants from "./constant"
+import Immutable from "seamless-immutable"
 
 const {
     StateUtils:NavigationStateUtils
@@ -65,11 +66,11 @@ function navigationReducer(state={},action) {
     }
 }
 
-let initialState = {
+let initialState = Immutable({
     index:0,
     key:"root",
     routes:[]
-}
+})
     
 export default function routerReducer(navigationState=initialState,action){
     let scene,path,nextScene

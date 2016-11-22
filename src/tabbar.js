@@ -79,9 +79,9 @@ class TabBar extends Component{
     }
     _renderIcon(childProps,selected){
         const {styleConstants,userPrefs,authentication} = this.props
-        const iconColor = styleConstants.tabBarItemColor
+        const iconColor = "#333"
         const {title,iconName,iconTag} = childProps
-        const selectedIconColor = styleConstants.tabBarSelectedItemColor
+        const selectedIconColor ="blue"
         return (
             <View style={styles.tabBarItem}>
                 <Icon name={iconName} size={20} color={selected?selectedIconColor:iconColor}/>
