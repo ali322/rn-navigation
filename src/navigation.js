@@ -36,7 +36,7 @@ class Navigation extends Component{
         const {route} = props.scene
         if(route.tabbar){
             return <TabNavigation navigationState={route} navigationActions={this.props.navigationActions}
-                sceneProps={sceneProps}/>
+                sceneProps={sceneProps} component={route.component}/>
         }
         if(route.component){
             const params = route.params

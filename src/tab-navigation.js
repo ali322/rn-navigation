@@ -13,11 +13,12 @@ class TabNavigation extends Component{
     }
     render(){
         const {navigationState,navigationActions,sceneProps} = this.props
+        const TabBarComponent = this.props.component?this.props.component:TabBar
         return (
-            <TabBar {...sceneProps} activeIndex={navigationState.index} visible={navigationState.visible}>
+            <TabBarComponent {...sceneProps} activeIndex={navigationState.index} visible={navigationState.visible}>
                 {navigationState.routes.map((item,i)=>{
                     return (
-                        <TabBar.Item key={i} beforeSelect={()=>{
+                        <TabBarComponent.Item key={i} beforeSelect={()=>{
                             const selectable = item.onSelect?item.onSelect(navigationState,navigationActions):true
                             if(selectable){
                                 navigationActions.focusScene(item.key)
