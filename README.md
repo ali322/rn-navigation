@@ -1,6 +1,6 @@
 RN-Navigation [![CircleCI](https://circleci.com/gh/ali322/rn-navigation.svg?style=svg)](https://circleci.com/gh/ali322/rn-navigation) [![npm version](https://badge.fury.io/js/rn-navigation.svg)](https://badge.fury.io/js/rn-navigation)
 ===
-[![NPM](https://nodei.co/npm/rn-navigation.png)](https://nodei.co/npm/rn-navigation/)
+[![NPM](https://nodei.co/npm/rn-navigation.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/rn-navigation/)
 
 inspired by [react-native-router-flux](https://github.com/aksonov/react-native-router-flux),yet another router for react-native,built on new NavigationExperimental API,easy to migrate with redux and other flux-like framework
 
