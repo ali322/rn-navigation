@@ -1,6 +1,6 @@
 {
   "name": "rn-navigation",
-  "version": "1.0.11",
+  "version": "1.0.18",
   "description": "react-native navigation state maintained by redux",
   "main": "index.js",
   "repository": {
