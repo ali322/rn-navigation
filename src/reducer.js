@@ -18,6 +18,7 @@ function navigationReducer(state={},action) {
             nextRoutes = nextRoutes.set(nextRoutes.length,action.state)
             return {
                 ...state,
+                prevIndex:state.index,
                 index:nextRoutes.length - 1,
                 routes:nextRoutes
             }
@@ -29,6 +30,7 @@ function navigationReducer(state={},action) {
             nextRoutes = nextRoutes.slice(0,-1)
             return {
                 ...state,
+                prevIndex:state.index,
                 index:nextRoutes.length - 1,
                 routes:nextRoutes
             }

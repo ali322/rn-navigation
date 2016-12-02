@@ -11,6 +11,12 @@ Install
 npm install rn-navigation --save
 ```
 
+then you need link the dependenices
+
+```javascript
+react-native link react-native-vector-icons
+```
+
 Useage
 ===
 

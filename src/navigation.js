@@ -1,21 +1,42 @@
 'use strict'
 
 import React,{Component,PropTypes} from "react"
-import {NavigationExperimental,StyleSheet,Animated,Easing,View,Text} from "react-native"
+import {NavigationExperimental,StyleSheet,Animated,Easing,View,Text,Dimensions} from "react-native"
 import TabNavigation from "./tabnavigation"
 import {navigationReducer} from "./reducer"
 import * as actions from "./action"
 
 const {
-    RootContainer:NavigationRootContainer,
     Transitioner:NavigationTransitioner,
     Card:NavigationCard
 } = NavigationExperimental
 
 const {
-  CardStackPanResponder: NavigationCardStackPanResponder,
-  CardStackStyleInterpolator: NavigationCardStackStyleInterpolator
+    CardStackStyleInterpolator:NavigationCardStackStyleInterpolator
 } = NavigationCard
+
+const SCREEN_WIDTH = Dimensions.get("window").width
+
+function leftToRight(/* NavigationSceneRendererProps */ props) {
+  const {
+    position,
+    scene,
+  } = props;
+
+  const index = scene.index;
+  const inputRange = [index - 1, index, index + 1];
+
+  const translateX = position.interpolate({
+    inputRange,
+    outputRange: [0, 0, -SCREEN_WIDTH],
+  });
+
+  return {
+    transform: [
+      { translateX },
+    ],
+  };
+}
 
 class Navigation extends Component{
     static propTypes = {
@@ -28,8 +49,13 @@ class Navigation extends Component{
     _renderCard(NavigationSceneRendererProps){
         const {sceneProps,navigationActions} = this.props
         const {route} = NavigationSceneRendererProps.scene
+        const {index,prevIndex} = NavigationSceneRendererProps.navigationState
+        let animationStyle = NavigationCardStackStyleInterpolator.forHorizontal(NavigationSceneRendererProps)
+        if(prevIndex && prevIndex > index){
+            animationStyle = leftToRight(NavigationSceneRendererProps)
+        }
         return <NavigationCard {...NavigationSceneRendererProps} renderScene={this._renderScene.bind(this)}  
-        key={NavigationSceneRendererProps.scene.route.key} sceneProps={sceneProps}/>
+        key={NavigationSceneRendererProps.scene.route.key} sceneProps={sceneProps} style={[animationStyle]}/>
     }
     _renderScene(props){
         const {sceneProps,navigationActions} = this.props

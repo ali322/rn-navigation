@@ -3,3 +3,4 @@ typings/
 .vscode/
 tsconfig.json
 .git/
+example/node_modules/
