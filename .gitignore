@@ -4,3 +4,7 @@ typings/
 tsconfig.json
 .git/
 example/node_modules/
+npm-debug.log
+yarn-error.log
+example/npm-debug.log
+example/yarn-error.log

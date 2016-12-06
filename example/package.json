@@ -7,12 +7,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "nva-ui": "0.0.2",
     "react": "~15.4.0-rc.4",
     "react-native": "0.38.0",
     "redux": "^3.6.0",
     "redux-container": "^1.0.2",
-    "rn-navigation": "../",
-    "yarn-ui": "^1.0.3"
+    "rn-navigation": "../"
   },
   "devDependencies": {
     "babel-jest": "17.0.2",

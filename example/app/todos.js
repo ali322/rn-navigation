@@ -1,7 +1,7 @@
 import React,{Component} from "react"
 import {View,Text,StyleSheet,TouchableOpacity} from "react-native"
 
-import {NavBar} from "yarn-ui"
+import {NavBar} from "nva-ui"
 
 class Todos extends Component{
     constructor(props){
