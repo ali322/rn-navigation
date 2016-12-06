@@ -67,7 +67,7 @@ class Navigation extends Component{
         if(route.component){
             const params = route.params
             const SceneComponent = route.component
-            return <SceneComponent navigationActions={navigationActions} isRequired={true} {...sceneProps} {...params}/>
+            return <SceneComponent navigationActions={navigationActions} {...sceneProps} {...params}/>
         }
     }
     _configureTransition(){
