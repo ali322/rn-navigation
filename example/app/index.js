@@ -23,7 +23,7 @@ class App extends Component{
                 <Scene tabbar={true} key="tabs" name="tabs">
                     <Scene key="tab-0" name="tab-0" title="主页" iconName="coffee">
                         <Scene key="todos" name="todos" component={Todos}/>
-                        <Scene key="todo" name="todo" component={Todo}/>
+                        <Scene key="todo" name="todo" component={Todo} hideTabBar={false}/>
                     </Scene>
                     <Scene key="tab-1" name="tab-1" title="我的" iconName="user">
                         <Scene key="mine" name="mine" component={Mine}/>

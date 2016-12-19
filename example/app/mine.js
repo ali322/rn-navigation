@@ -11,7 +11,7 @@ class Mine extends Component{
             <NavBar title="Todo" onLeftButtonClick={navigationActions.popScene}/>
             <View style={styles.content}>
             <View style={styles.label}>
-                <Text>Todo</Text>
+                <Text>Mine</Text>
             </View>
             </View>
             </View>
