@@ -3,23 +3,15 @@ import {View,Text,StyleSheet} from "react-native"
 
 import {NavBar} from "nva-ui"
 
-class Mine extends Component{
-    constructor(){
-        super()
-        this._handleNext = this._handleNext.bind(this)
-    }
-    _handleNext(){
-        const {navigationActions} = this.props
-        navigationActions.pushScene("setup")
-    }
+class Setup extends Component{
     render(){
         const {navigationActions} = this.props
         return (
             <View style={styles.container}>
-            <NavBar title="Mine" onLeftButtonClick={navigationActions.popScene} rightButton='Next' onRightButtonClick={this._handleNext}/>
+            <NavBar title="Setup" onLeftButtonClick={navigationActions.popScene}/>
             <View style={styles.content}>
             <View style={styles.label}>
-                <Text>Mine</Text>
+                <Text>Setup</Text>
             </View>
             </View>
             </View>
@@ -44,4 +36,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Mine
+export default Setup

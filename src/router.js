@@ -22,13 +22,15 @@ class Router extends Component{
     }
     _scenesListByChilren(chilren){
         const _scenes = React.Children.map(chilren,(child)=>{
-            let nextChildren = null
+            let _scene
             if(child.props.children){
-                nextChildren = this._scenesListByChilren(child.props.children)
-                return {key:child.props.name,...child.props,routes:nextChildren}
+                _scene = {key:child.props.name,...child.props,routes:this._scenesListByChilren(child.props.children)}
             }else{
-                return {key:child.props.name,...child.props}
+                _scene = {key:child.props.name,...child.props}
             }
+            delete _scene['name']
+            delete _scene['children']
+            return _scene
         })
         return Immutable(_scenes)
     }

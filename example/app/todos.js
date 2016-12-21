@@ -10,7 +10,7 @@ class Todos extends Component{
     }
     _handleNext(){
         const {navigationActions} = this.props
-        navigationActions.pushScene("todo",{id:1})
+        navigationActions.jumpToScene("setup")
     }
     render(){
         return (

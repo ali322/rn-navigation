@@ -55,7 +55,7 @@ class Navigation extends Component{
             animationStyle = leftToRight(NavigationSceneRendererProps)
         }
         return <NavigationCard {...NavigationSceneRendererProps} renderScene={this._renderScene.bind(this)}  
-        key={NavigationSceneRendererProps.scene.route.key} sceneProps={sceneProps} style={[animationStyle]}/>
+        key={NavigationSceneRendererProps.scene.route.key} sceneProps={sceneProps} style={animationStyle}/>
     }
     _renderScene(props){
         const {sceneProps,navigationActions} = this.props

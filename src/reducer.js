@@ -16,51 +16,32 @@ function navigationReducer(state={},action) {
                 return state
             }
             nextRoutes = nextRoutes.set(nextRoutes.length,action.state)
-            return {
-                ...state,
+            return state.merge({
                 prevIndex:state.index,
                 index:nextRoutes.length - 1,
                 routes:nextRoutes
-            }
-            // return NavigationStateUtils.push(state,action.state)
+            })
         case constants.POP_SCENE:
             if(state.index === 0 || state.routes.length === 1){
                 return state
             }
             nextRoutes = nextRoutes.slice(0,-1)
-            return {
-                ...state,
+            return state.merge({
                 prevIndex:state.index,
                 index:nextRoutes.length - 1,
                 routes:nextRoutes
-            }
-            // return NavigationStateUtils.pop(state)
+            })
         case constants.JUMPTO_SCENE:
-            if(typeof action.key === "string"){
-                return {
-                    ...state,
-                    index:indexOfRoute(state,action.key)
-                }
-                // return NavigationStateUtils.jumpTo(state,action.key)
-            }
-            return {
-                ...state,
-                index:action.key
-            }
-            // return NavigationStateUtils.jumpToIndex(state,action.key)
+            return jumpToScene(state,action.key)
         case constants.RESET_SCENE:
-            return {
-                ...state,
+            return state.merage({
                 index:0,
                 routes:[]
-            }
+            })
         case constants.RELOAD_SCENE:
             return state.update("routes",children=>{
-                return children.map((child,i)=>{
-                    return {
-                        ...child,
-                        _mark:Date.now()
-                    }
+                return children.flatMap(child=>{
+                    return child.set('_mark',Date.now())
                 })
             })
         default:
@@ -85,14 +66,14 @@ export default function routerReducer(navigationState=initialState,action){
         nextScene = scene
         //initialize tabbar scene state
         if(scene.tabbar){
-            nextScene = scene.set("routes",scene.routes.map((item,i)=>{
-                return {
+            nextScene = scene.set("routes",scene.routes.flatMap((item,i)=>{
+                return item.merge({
                     index:0,
-                    ...item,
                     routes:[item.routes[0]]
-                }
+                })
             })).set("index",0)
         }
+        //push initial scene
         if(navigationState.routes.length === 0){
             navigationState = navigationState.setIn(["routes",0],nextScene)
             return navigationState
@@ -132,9 +113,11 @@ export default function routerReducer(navigationState=initialState,action){
             navigationState = nestReducer(navigationState,injectedAction,path)
             break
         case constants.POP_SCENE:
-        case constants.JUMPTO_SCENE:
         case constants.RELOAD_SCENE:
             navigationState = nestReducer(navigationState,action,path)
+            break
+        case constants.JUMPTO_SCENE:
+            navigationState = nestReducer(navigationState,action,path.slice(0,-2))
             break
         case constants.RESET_SCENE:
             navigationState = navigationReducer(navigationState,action)
@@ -144,30 +127,24 @@ export default function routerReducer(navigationState=initialState,action){
 }
 
 /**
- * resolve current scene path
- * @param {Object} navigationState
- * @param {Array<String>} [path=[]]
- * @returns Array<String>
+ * jumpTo siblings tab scene
  */
-function resolvePath(navigationState,path=[]){
-    if(navigationState.routes.length > 0){
-        const scene = navigationState.routes[navigationState.index]
-        if(scene.tabbar && scene.routes.length > 0){
-            path = resolvePath(scene.routes[scene.index],
-                [...path,"routes",navigationState.index,"routes",scene.index]
-            )
+function jumpToScene(navigationState,key){
+    let tabIndex = 0,subIndex = 0
+    navigationState.routes.forEach((tab,i)=>{
+        const _index = tab.routes.findIndex(v=>v.key == key)
+        if(_index >= 0){
+            subIndex = _index
+            tabIndex = i
         }
-    }
-    return path
-}
-
-/**
- * check route is exist in state
- * @param {any} state
- * @param {any} route
- */
-function indexOfRoute(state,route){
-    return state.routes.map(route=>route.key).indexOf(route.key)
+    })
+    let nextState = navigationState.set('index',tabIndex)
+    nextState = nextState.updateIn(['routes',tabIndex],tab=>{
+        let nextTab = tab.set('index',subIndex)
+        nextTab = nextTab.set('routes',nextTab.routes.slice(0,subIndex + 1))
+        return nextTab
+    })
+    return nextState
 }
 
 /**
@@ -195,6 +172,24 @@ function focusScene(navigationState,key){
         }
         return scene
     }))
+}
+
+/**
+ * resolve current scene path
+ * @param {Object} navigationState
+ * @param {Array<String>} [path=[]]
+ * @returns Array<String>
+ */
+function resolvePath(navigationState,path=[]){
+    if(navigationState.routes.length > 0){
+        const scene = navigationState.routes[navigationState.index]
+        if(scene.tabbar && scene.routes.length > 0){
+            path = resolvePath(scene.routes[scene.index],
+                [...path,"routes",navigationState.index,"routes",scene.index]
+            )
+        }
+    }
+    return path
 }
 
 
