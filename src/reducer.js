@@ -235,6 +235,9 @@ function locateScene(scenes,key,path=[]) {
  * @returns Object
  */
 function getInPath(obj,path=[]){
+    if(path.length === 0){
+        return obj
+    }
     for(var i =0,l = path.length;obj!== null && i < l;i++){
         obj = obj[path[i]]
     }
