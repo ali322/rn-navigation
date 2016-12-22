@@ -3,15 +3,15 @@ import {View,Text,StyleSheet} from "react-native"
 
 import {NavBar} from "nva-ui"
 
-class Mine extends Component{
+class Third extends Component{
     render(){
-        const {pushScene} = this.props.navigationActions
+        const {navigationActions} = this.props
         return (
             <View style={styles.container}>
-            <NavBar title="Mine" leftButton='' rightButton='Next' onRightButtonClick={()=>pushScene('setup')}/>
+            <NavBar title="Third" onLeftButtonClick={()=>navigationActions.backToScene('first')} leftButton="First"/>
             <View style={styles.content}>
             <View style={styles.label}>
-                <Text>It's Mine scene</Text>
+                <Text>It's Third scene</Text>
             </View>
             </View>
             </View>
@@ -36,4 +36,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Mine
+export default Third

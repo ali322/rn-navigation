@@ -3,17 +3,19 @@ import {View,Text,StyleSheet,TouchableOpacity} from "react-native"
 
 import {NavBar} from "nva-ui"
 
-class Setup extends Component{
+class Second extends Component{
     render(){
-        const {jumpToScene,popScene} = this.props.navigationActions
+        const {popScene,replaceScene,pushScene,reloadScene} = this.props.navigationActions
         return (
             <View style={styles.container}>
-            <NavBar title="Setup" onLeftButtonClick={popScene}/>
-            <View style={styles.content}>
+            <NavBar title="Second" onLeftButtonClick={popScene} 
+            rightButton='Next' onRightButtonClick={()=>pushScene('third')}/>
+            <View style={[styles.content,{backgroundColor:this.props.color}]}>
             <View style={styles.label}>
-                <Text>It's Setup scene</Text>
+                <Text>It's Second scene</Text>
             </View>
-            <TouchableOpacity style={styles.button} onPress={()=>jumpToScene('first')}><Text style={styles.buttonText}>JumpTo First</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={()=>replaceScene('login',{color:'whitesmoke'})}><Text style={styles.buttonText}>Replace With Login</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={()=>reloadScene({color:'lightblue'})}><Text style={styles.buttonText}>Reload</Text></TouchableOpacity>
             </View>
             </View>
         )
@@ -48,4 +50,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Setup
+export default Second

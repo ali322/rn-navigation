@@ -3,15 +3,18 @@ import {View,Text,StyleSheet} from "react-native"
 
 import {NavBar} from "nva-ui"
 
-class Todo extends Component{
+class Login extends Component{
+    static defaultProps = {
+        color:'gray'
+    }
     render(){
-        const {navigationActions} = this.props
+        const {pushScene} = this.props.navigationActions
         return (
             <View style={styles.container}>
-            <NavBar title="Todo" onLeftButtonClick={navigationActions.popScene}/>
-            <View style={styles.content}>
+            <NavBar title="Login" leftButton='' rightButton='Next' onRightButtonClick={()=>pushScene('third')}/>
+            <View style={[styles.content,{backgroundColor:this.props.color}]}>
             <View style={styles.label}>
-                <Text>Todo</Text>
+                <Text>It's Login scene</Text>
             </View>
             </View>
             </View>
@@ -36,4 +39,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Todo
+export default Login
