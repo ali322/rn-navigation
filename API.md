@@ -24,7 +24,7 @@ API
 | component | React.Component | | The Component to be displayed,not required when prop `tabbar` is true |
 | tabbar | boolean | optional | Defines 'TabBar' scene container, so child scenes will be displayed as 'tabs'. If no component is defined, built-in TabBar is used as renderer |
 | title | string | optional | Define `TabBar` title for scene |
-| iconName | string | optional | Define `TabBar` iconName for scene |
+| iconName | string | optional | Define `TabBar` iconName for scene (fontawesome iconfont name) |
 | iconTag | React.Component | optional | Define `TabBar` custom component for scene |
 | hideTabBar | boolean | optional | is `TabBar` hide or not | 
 | beforeSelect | function | optional | get called before select `TabBar` item |

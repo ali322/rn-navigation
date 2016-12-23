@@ -24,7 +24,7 @@ API
 | component | React.Component | | 场景渲染组件(`tabbar` 属性为true时,可省略) |
 | tabbar | boolean | optional | 是否为 `TabBar` 容器场景,如果未提供 `component` 属性,将使用内置的 `TabBar` 组件渲染 |
 | title | string | optional | 定义场景 `TabBar` 标题 |
-| iconName | string | optional | 定义场景 `TabBar` 图标名称 |
+| iconName | string | optional | 定义场景 `TabBar` 图标名称 (fontawesome 图标字体名称)|
 | iconTag | React.Component | optional | 定义场景 `TabBar` 上的自定义小组件 |
 | hideTabBar | boolean | optional | `TabBar` 是否在场景中隐藏 | 
 | beforeSelect | function | optional | 选择 `TabBar` 项目之前触发 |
