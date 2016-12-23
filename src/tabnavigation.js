@@ -1,12 +1,11 @@
-'use strict'
-import React,{Component,PropTypes} from "react"
+import React,{Component,PureComponent,PropTypes} from "react"
 import {StyleSheet,View,Text} from "react-native"
 import Icon from "react-native-vector-icons/FontAwesome"
 import TabBar from "./tabbar"
 import Navigation from "./navigation"
 import Router from "./router"
 
-class TabNavigation extends Component{
+class TabNavigation extends PureComponent{
     static propTypes = {
         navigationState:PropTypes.object,
         navigationActions:PropTypes.object

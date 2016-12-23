@@ -8,7 +8,7 @@ class Mine extends Component{
         const {pushScene} = this.props.navigationActions
         return (
             <View style={styles.container}>
-            <NavBar title="Mine" leftButton='' rightButton='Next' onRightButtonClick={()=>pushScene('setup')}/>
+            <NavBar title="Mine" leftButton='' rightButton='Next' onRightButtonClick={()=>pushScene('setup',null,'vertical')}/>
             <View style={styles.content}>
             <View style={styles.label}>
                 <Text>It's Mine scene</Text>

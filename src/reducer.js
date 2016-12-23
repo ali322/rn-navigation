@@ -1,5 +1,3 @@
-'use strict'
-
 import {
     NavigationExperimental
 } from "react-native"
@@ -20,7 +18,7 @@ function navigationReducer(state = {}, action) {
             }
             nextRoutes = nextRoutes.set(nextRoutes.length, action.state)
             return state.merge({
-                prevIndex: state.index,
+                animationStyle: action.style,
                 index: nextRoutes.length - 1,
                 routes: nextRoutes
             })
@@ -36,7 +34,7 @@ function navigationReducer(state = {}, action) {
                 })
             }
             return state.merge({
-                prevIndex: state.index,
+                animationStyle: action.style,
                 index: nextRoutes.length - 1,
                 routes: nextRoutes
             })
@@ -45,22 +43,22 @@ function navigationReducer(state = {}, action) {
         case constants.JUMPTO_SCENE:
             return jumpToScene(state, action)
         case constants.REPLACE_SCENE:
-            console.log(action.state)
             nextRoutes = nextRoutes.set(nextRoutes.length - 1, action.state)
             return state.merge({
+                animationStyle: action.style,
                 routes: nextRoutes
             })
         case constants.RESET_SCENE:
-            return state.merage({
+            return state.merge({
                 index: 0,
                 routes: []
             })
-        // case constants.RELOAD_SCENE:
-        //     return state.update("routes", children => {
-        //         return children.flatMap(child => {
-        //             return child.set('_mark', Date.now()).set('params', action.params)
-        //         })
-        //     })
+        case constants.RELOAD_SCENE:
+            return state.update("routes", children => {
+                return children.flatMap(child => {
+                    return child.set('_mark', Date.now()).set('params', action.params)
+                })
+            }).set('animationStyle', action.style)
         default:
             return state
     }
@@ -127,6 +125,7 @@ export default function routerReducer(navigationState = initialState, action) {
         case constants.PUSH_SCENE:
             const injectedAction = {
                 type: action.type,
+                style: action.style,
                 state: {
                     params: action.params,
                     ...scene,
@@ -163,7 +162,7 @@ function jumpToScene(navigationState, action) {
     let nextState = navigationState.set('index', tabIndex)
     nextState = nextState.updateIn(['routes', tabIndex], tab => {
         let nextTab = tab.set('index', subIndex)
-        nextTab = nextTab.set('routes', nextTab.routes.slice(0, subIndex + 1))
+        nextTab = nextTab.set('routes', nextTab.routes.slice(0, subIndex + 1)).set('animationStyle',action.style)
         nextTab = nextTab.updateIn(['routes', subIndex], v => v.set('params', action.params))
         return nextTab
     })

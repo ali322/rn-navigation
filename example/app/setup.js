@@ -8,12 +8,12 @@ class Setup extends Component{
         const {jumpToScene,popScene} = this.props.navigationActions
         return (
             <View style={styles.container}>
-            <NavBar title="Setup" onLeftButtonClick={popScene}/>
+            <NavBar title="Setup" onLeftButtonClick={()=>popScene('top2bottom')}/>
             <View style={styles.content}>
             <View style={styles.label}>
                 <Text>It's Setup scene</Text>
             </View>
-            <TouchableOpacity style={styles.button} onPress={()=>jumpToScene('first')}><Text style={styles.buttonText}>JumpTo First</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={()=>jumpToScene('first',null,'fade')}><Text style={styles.buttonText}>JumpTo First</Text></TouchableOpacity>
             </View>
             </View>
         )

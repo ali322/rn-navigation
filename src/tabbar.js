@@ -1,51 +1,8 @@
-'use strict'
-
-import React,{Component,PropTypes} from "react"
+import React,{Component,PureComponent,PropTypes} from "react"
 import {View,TouchableOpacity,StyleSheet,Text,Dimensions} from "react-native"
 import Icon from "react-native-vector-icons/FontAwesome"
 
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        flexDirection:"column",
-        justifyContent:"center"
-    },
-    tabContent:{
-        flex:1  
-    },
-    tabs:{
-        position:"absolute",
-        bottom:0,
-        left:0,
-        width:Dimensions.get("window").width,
-        flexDirection:"row",
-        justifyContent:"center",
-        alignItems:"center",
-        height:50,
-        backgroundColor: "#F7F7F7",
-        borderTopWidth: 1,
-        borderTopColor: "#DDD"
-    },
-    tab:{
-        flex:1,
-        justifyContent:"center",
-        alignItems:"center"
-    },
-    tabBarItem: {
-        flexDirection: "column",
-        alignItems: "center"
-    },
-    tabBarItemText: {
-        fontSize: 12,
-        color: "#666",
-        paddingTop:3
-    },
-    tabBarSelectedItemText:{
-        color:"blue"
-    }
-})
-
-class TabBar extends Component{
+class TabBar extends PureComponent{
     static defaultProps = {
         activeIndex:0,
         visible:true
@@ -135,5 +92,46 @@ class TabBarItem extends Component{
 }
 
 TabBar.Item = TabBarItem
+
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        flexDirection:"column",
+        justifyContent:"center"
+    },
+    tabContent:{
+        flex:1  
+    },
+    tabs:{
+        position:"absolute",
+        bottom:0,
+        left:0,
+        width:Dimensions.get("window").width,
+        flexDirection:"row",
+        justifyContent:"center",
+        alignItems:"center",
+        height:50,
+        backgroundColor: "#F7F7F7",
+        borderTopWidth: 1,
+        borderTopColor: "#DDD"
+    },
+    tab:{
+        flex:1,
+        justifyContent:"center",
+        alignItems:"center"
+    },
+    tabBarItem: {
+        flexDirection: "column",
+        alignItems: "center"
+    },
+    tabBarItemText: {
+        fontSize: 12,
+        color: "#666",
+        paddingTop:3
+    },
+    tabBarSelectedItemText:{
+        color:"blue"
+    }
+})
 
 export default TabBar

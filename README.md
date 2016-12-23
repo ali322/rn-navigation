@@ -72,7 +72,7 @@ this.props.navigationActions.pushScene("topic")
 this.props.navigationActions.popScene()
 ```
 
-just simple and easy,more instructions refer to [API](./API.md)
+just simple and easy,more instructions refer to [API](./API.md),or [中文文档](./API_zh.md)
 
 ## Todo
 

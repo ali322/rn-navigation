@@ -19,10 +19,7 @@ const rootReducer = combineReducers({
 @container(rootReducer)
 class App extends Component{
     render(){
-        const sceneProps = {
-            test(){
-            }
-        }
+        const sceneProps = {}
         return (
             <View style={styles.container}>
             <Router initialSceneKey="tabs" sceneProps={sceneProps} {...this.props}>
