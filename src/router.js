@@ -17,6 +17,10 @@ import Immutable from "seamless-immutable"
 import _ from "lodash"
 
 class Router extends PureComponent {
+    static propTypes = {
+        initialSceneKey:PropTypes.string,
+        sceneProps:PropTypes.object
+    }
     constructor(props) {
         super(props)
         this._scenes = this._sceneTree(props.children)
@@ -81,7 +85,7 @@ class Router extends PureComponent {
 export class Scene extends Component {
     static propTypes = {
         tabbar: PropTypes.bool,
-        component: PropTypes.any,
+        component: PropTypes.element,
         name: PropTypes.string
     }
     render() {
